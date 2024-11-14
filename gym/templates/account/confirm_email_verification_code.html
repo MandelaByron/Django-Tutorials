@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <div class="center-container container">
+        <div class="content-section">
+            <h2 class="mb-4 text-center text-white">Email Verification</h2>
+            <p class="text-center">
+                We’ve sent a verification code to <strong> <a href="mailto:{{ email }}">{{ email }}</a></strong>.
+                The code expires shortly, so please enter it soon.
+            </p>
+            <form method="POST">
+                {% csrf_token %}
+                <fieldset class="form-group">
+                    <legend class="border-bottom mb-4">Confirm Email</legend>
+                    {{ form|crispy }}
+                </fieldset>
+                <div class="form-group text-center">
+                    <button class="btn btn-outline-success mb-2" type="submit">Confirm Email</button>
+                </div>
+            </form>
+            <div class="border-top pt-3 text-center">
+                <small class="text-muted">
+                    Didn't receive the email? <a href="{% url 'account_email_verification_sent' %}">Resend Confirmation Email</a>
+                </small>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

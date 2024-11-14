@@ -1,0 +1,13 @@
+
+
+
+<h2>Select a Plan</h2>
+<form action="{% url 'initiate_payment' %}" method="POST">
+    {% csrf_token %}
+    <select name="plan">
+        {% for plan in plans %}
+        <option value="{{ plan.id }}">{{ plan.name }} - {{ plan.price }}</option>
+        {% endfor %}
+    </select>
+    <button type="submit">Proceed to Payment</button>
+</form>

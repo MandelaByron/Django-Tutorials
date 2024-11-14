@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+    <div class="container mt-5 pt-5 ">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card p-4 shadow-lg bg-dark text-white">
+                    <!-- Plan Information -->
+                    <h2 class="text-center mb-4">Subscribe to {{ plan.name }} Plan</h2>
+                    <p class="text-center">Price: <strong>{{ plan.price }} KES</strong></p>
+
+                    <!-- Payment Button -->
+                    <div class="text-center">
+                        <button type="button" class="btn btn-primary btn-lg mt-3" onclick="payWithPaystack()">Pay Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Paystack Inline Script -->
+    <script src="https://js.paystack.co/v2/inline.js"></script>
+    <script type="text/javascript">
+        function payWithPaystack() {
+            let handler = PaystackPop.setup({
+                key: '{{ paystack_public_key }}',
+                email: '{{ request.user.email }}',
+                amount: {{ plan.price|floatformat:2 }} * 100,  // Amount in KES
+                currency: "KES",
+
+                callback: function(response) {
+                    let reference = response.reference;
+                    window.location.href = "{% url 'verify_payment' %}?reference=" + reference + "&plan_id={{ plan.id }}";
+                },
+                onClose: function() {
+                    alert('Transaction was not completed');
+                },
+            });
+            handler.openIframe();
+        }
+    </script>
+{% endblock content %}
+
+

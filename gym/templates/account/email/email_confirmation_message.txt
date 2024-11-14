@@ -1,0 +1,22 @@
+Hello {{ user.first_name}},
+
+{% if code %}
+Your email verification code is listed below. Please enter it in your open browser window:
+
+{{ code }}
+{% else %}
+Please confirm your email address by visiting the following link:
+
+{{ activate_url }}
+
+If the button in your browser doesn't work, you can copy and paste this link into your browser:
+{{ activate_url }}
+{% endif %}
+
+If you did not sign up for this account, you can safely ignore this email.
+
+Best regards,
+The ALPHA_GYM Team
+
+
+© {{ current_year }} ALPHA_GYM | All Rights Reserved

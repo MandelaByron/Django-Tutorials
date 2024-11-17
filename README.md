@@ -28,8 +28,4 @@ Each episode builds on the previous one, introducing new features and improvemen
 - **Mailgun Account** (for professional emailing)
 - **Paystack Account** (for payment processing)
 
-## Setup and Installation
-1. **Clone the repository**:
-   ```bash
-   git clone https://github.com/yourusername/django-gym-membership-app.git
-   cd django-gym-membership-app
+

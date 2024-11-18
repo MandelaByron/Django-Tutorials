@@ -1,19 +1,18 @@
-# Django Gym Membership App - Episode 2
+# Django Gym Membership App - Episode 3
 
-We've laid the foundation for the project by covering the essentials of setting up a Django application, routing URLs, using function-based views, managing virtual environments, and creating dynamic templates with static files.
+We've learnt how to create a Django Custom User Model, which enables you to tailor your applications according to your requirements.
 
 ## Episode Overview
 In this episode, we covered:
-- **Setting Up the Django Project**: Initializing a new Django project and configuring basic settings.
-- **Virtual Environment**: Creating and activating a virtual environment to manage dependencies.
-- **URL Routing**: Configuring URL patterns and linking them to views for navigation.
-- **Function-Based Views (FBVs)**: Creating simple views using function-based views to handle requests and return responses.
-- **Dynamic Templates**: Using Django templates to create dynamic content and pass data from views to templates.
-- **Static Files**: Setting up static files (CSS, JavaScript, images) and linking them to templates.
-
-## Requirements
-- **Python 3.8+**
-- **Django 4.x**
-- **Virtual Environment**: Recommended for dependency management
+1. **Creating a Custom User Model**:
+   - Why we need a custom user model in Django.
+   - Using `AbstractBaseUser` and `PermissionsMixin` for a fully customizable user model.
+2. **User Manager**:
+   - Implementing a custom user manager to handle user creation.
+3. **Registering the Custom User Model**:
+   - Making the custom user model visible in the Django admin panel.
+   - Customizing the admin interface for better usability.
+4. **Migration**:
+   - Generating and applying database migrations for the new user model.
 
 

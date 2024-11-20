@@ -40,8 +40,37 @@ INSTALLED_APPS = [
     
     
     "home", 
-    "users"
+    "users",
+    
+    ##THIRD PARTY APPS
+    'allauth',
+    'allauth.account',
+    'crispy_forms',
+    "crispy_bootstrap5"
 ]
+
+# Allauth settings
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_EMAIL_REQUIRED = True # The user is required to hand over an email address when signing up.
+ACCOUNT_EMAIL_VERIFICATION = 'none'  # Options: "none", "optional", "mandatory"
+ACCOUNT_USERNAME_REQUIRED = False #Set to False when you do not wish to prompt the user to enter a username.
+ACCOUNT_USER_MODEL_USERNAME_FIELD = None  # Disable username field
+
+ACCOUNT_FORMS = {'signup': 'users.forms.CustomSignupForm'}
+ACCOUNT_ADAPTER = 'users.adapters.MyAdapter'
+
+# Login redirect and signup settings
+LOGIN_REDIRECT_URL = '/'
+
+AUTHENTICATION_BACKENDS = [
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+
+    # `allauth` specific authentication methods, such as login by email
+    'allauth.account.auth_backends.AuthenticationBackend',
+
+]
+
 
 AUTH_USER_MODEL = "users.Users"
 
@@ -53,6 +82,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    
+    # Add the account middleware:
+    "allauth.account.middleware.AccountMiddleware",
 ]
 
 ROOT_URLCONF = 'gym.urls'
@@ -127,6 +159,9 @@ STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
 
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+
+CRISPY_TEMPLATE_PACK = "bootstrap5"
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 

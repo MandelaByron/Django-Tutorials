@@ -112,19 +112,23 @@
                 <div class="col-lg-6">
                     <nav class="nav-menu">
                         <ul>
-                            <li class="active"><a href="./index.html">Home</a></li>
-                            <li><a href="./about-us.html">About Us</a></li>
-                            <li><a href="./class-details.html">Classes</a></li>
-                            <li><a href="./services.html">Services</a></li>
-                            <li><a href="./team.html">Our Team</a></li>
+                            <li class="active"><a href="{% url 'home' %}">Home</a></li>
+                            <li><a href="{% url 'about' %}">About Us</a></li>
+                            <li><a href="{% url 'services' %}">Services</a></li>
+                            <li><a href="{% url 'team' %}">Our Team</a></li>
                             <li><a href="#">Pages</a>
                                 <ul class="dropdown">
-                                    <li><a href="./about-us.html">About us</a></li>
-                                    <li><a href="./team.html">Our team</a></li>
+                                    <li><a href="{% url 'about' %}">About us</a></li>
+                                    <li><a href="{% url 'team' %}">Our team</a></li>
                                     
                                 </ul>
                             </li>
-                            <li><a href="./contact.html">Contact</a></li>
+                            {% if user.is_authenticated %}
+                                <li><a href="{% url 'account_logout' %}">Log Out</a></li>
+                            {% else %}
+                                <li><a href="{% url 'account_login' %}">Log In</a></li>
+                            {% endif %}
+                            
                         </ul>
                     </nav>
                 </div>
@@ -153,10 +157,23 @@
 
 
     <main>
-      
-        {% block content%}
+        {% if messages %}
+            <div class="messages-section">
+                {% for message in messages %}
+                    <div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert"">
+                        {{message}}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+        
+        <div class="mt-2">
+            {% block content%}
 
-        {% endblock content%}
+            {% endblock content%}
+        </div>
+
     </main>
 
     <!-- Footer Section Begin -->

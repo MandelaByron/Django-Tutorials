@@ -1,18 +1,21 @@
-# Django Gym Membership App - Episode 3
+# Django Gym Membership App - Episode 4:User Authentication with Django Allauth
 
-We've learnt how to create a Django Custom User Model, which enables you to tailor your applications according to your requirements.
+We've integrated **Django Allauth** to handle user authentication and built user-friendly signup, login, and logout routes. We also customized the default templates and enhanced forms using **crispy-forms** for a modern look.
+
+---
 
 ## Episode Overview
 In this episode, we covered:
-1. **Creating a Custom User Model**:
-   - Why we need a custom user model in Django.
-   - Using `AbstractBaseUser` and `PermissionsMixin` for a fully customizable user model.
-2. **User Manager**:
-   - Implementing a custom user manager to handle user creation.
-3. **Registering the Custom User Model**:
-   - Making the custom user model visible in the Django admin panel.
-   - Customizing the admin interface for better usability.
-4. **Migration**:
-   - Generating and applying database migrations for the new user model.
+1. **Django Allauth Integration**:
+   - Installed and configured Django Allauth for user authentication.
+   - Registered the app in Django's `INSTALLED_APPS` and updated `settings.py`.
+2. **Overriding Default Allauth Templates**:
+   - Customized the signup, login, and logout pages to match our app’s design.
+3. **Building Authentication Routes**:
+   - Added routes for user signup, login, and logout.
+4. **Form Customization with Crispy Forms**:
+   - Styled the Allauth forms using the Crispy Forms library for a better user experience.
+
+
 
 

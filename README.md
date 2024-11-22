@@ -1,20 +1,19 @@
-# Django Gym Membership App - Episode 4:User Authentication with Django Allauth
+# Django Gym Membership App - Episode 5:Working with Media and User Profile Updates
 
-We've integrated **Django Allauth** to handle user authentication and built user-friendly signup, login, and logout routes. We also customized the default templates and enhanced forms using **crispy-forms** for a modern look.
+In this episode, we expanded on our custom user model by adding an **avatar field** to allow users to upload profile pictures. We standardized image naming using **UUID**, ensuring unique and clean file storage. Additionally, we worked with Django forms to enable users to update their profiles, including their name, age, and avatar.
+
 
 ---
 
 ## Episode Overview
 In this episode, we covered:
-1. **Django Allauth Integration**:
-   - Installed and configured Django Allauth for user authentication.
-   - Registered the app in Django's `INSTALLED_APPS` and updated `settings.py`.
-2. **Overriding Default Allauth Templates**:
-   - Customized the signup, login, and logout pages to match our app’s design.
-3. **Building Authentication Routes**:
-   - Added routes for user signup, login, and logout.
-4. **Form Customization with Crispy Forms**:
-   - Styled the Allauth forms using the Crispy Forms library for a better user experience.
+1. **Media**:
+   - Learnt how to work with media - uploads and standardize filenames for consistency.
+
+2. **Working With Forms**:
+   - Demonstrated how to work with django forms by adding a feature that allows users to update their information.
+
+
 
 
 

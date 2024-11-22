@@ -1,6 +1,6 @@
 from allauth.account.forms import SignupForm
 from django import forms
-
+from .models import Users
 class CustomSignupForm(SignupForm):
     first_name  = forms.CharField(max_length=250, label='First Name')
     
@@ -15,3 +15,10 @@ class CustomSignupForm(SignupForm):
         user = super(CustomSignupForm, self).save(request)
 
         return user
+    
+class UserUpdateForm(forms.ModelForm):
+    
+    class Meta:
+        model =  Users
+        
+        fields = ['first_name', "last_name", "age", "avatar"]

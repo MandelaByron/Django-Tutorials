@@ -159,6 +159,10 @@ STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
 
+MEDIA_ROOT = BASE_DIR / 'media' #Specifies the file system path where your media files are stored
+
+MEDIA_URL = '/media/' #creates URLs like http://127.0.0.1:8000/media/profile-2.jpg.
+
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 
 CRISPY_TEMPLATE_PACK = "bootstrap5"

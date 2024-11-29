@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+    <section class="spad">
+        <div class="container mt-5">
+
+            <div class="row mt-4">
+                <div class="col-md-8 offset-md-2">
+                    <h2 class="mb-2 text-white"> {{ blog_post.title}} </h2>
+                    <div class="mb-4 ">
+                        <img src="{{ blog_post.thumbnail.url }}" class="img-fluid rounded" alt="{{ blog_post.title }}">
+                    </div>
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <!-- Blog Dates -->
+                        <span class="text-muted">{{ blog_post.dateCreated|date:"F d, Y" }}</span>
+                        <span class="text-muted">Last Updated - {{ blog_post.updated|date:"F d, Y" }}</span>
+                    </div>
+                    <div class="content text-white">
+                        <!-- Blog Content -->
+                         <p>{{ blog_post.content }}</p>
+                        
+                    </div>
+                        <!-- Update Delete Buttons -->
+                    <div class="blog-details-tag-share pt-5">
+                        <!-- Tags -->
+
+                    </div>
+                    <div class="blog-details-author">
+                        <!-- Author details -->
+                        <div class="ba-pic">
+                            <img src="{{ blog_post.author.avatar.url }}" alt="">
+                        </div>
+                        <div class="ba-text">
+                            <h5>{{ blog_post.author.first_name }}</h5>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                                exercitation.
+                            </p>
+
+                        </div>
+                    </div>
+                    <!-- <div class="row">
+                        <div class="col-lg-6">
+                            <div class="comment-option">
+                                <h5 class="co-title">Comment</h5>
+                                <div class="co-item">
+                                    <div class="co-widget">
+                                        <a href="#"><i class="fa fa-heart-o"></i></a>
+                                        <a href="#"><i class="fa fa-share-square-o"></i></a>
+                                    </div>
+                                    <div class="co-pic">
+                                        <img src="{% static 'img/blog/details/comment-1.jpg'%}" alt="">
+                                        <h5>Brandon Kelley</h5>
+                                    </div>
+                                    <div class="co-text">
+                                        <p>Neque porro quisquam est, qui dolorem ipsum dolor sit amet, consectetur,
+                                            adipisci velit dolore.</p>
+                                    </div>
+                                </div>
+                                <div class="co-item reply-comment">
+                                    <div class="co-widget">
+                                        <a href="#"><i class="fa fa-heart-o"></i></a>
+                                        <a href="#"><i class="fa fa-share-square-o"></i></a>
+                                    </div>
+                                    <div class="co-pic">
+                                        <img src="{% static 'img/blog/details/comment-1.jpg'%}" alt="">
+                                        <h5>Brandon Kelley</h5>
+                                    </div>
+                                    <div class="co-text">
+                                        <p>Neque porro quisquam est, qui dolorem ipsum dolor sit amet, consectetur,
+                                            adipisci velit dolore.</p>
+                                    </div>
+                                </div>
+                                <div class="co-item">
+                                    <div class="co-widget">
+                                        <a href="#"><i class="fa fa-heart-o"></i></a>
+                                        <a href="#"><i class="fa fa-share-square-o"></i></a>
+                                    </div>
+                                    <div class="co-pic">
+                                        <img src="{% static 'img/blog/details/comment-1.jpg'%}" alt="">
+                                        <h5>Brandon Kelley</h5>
+                                    </div>
+                                    <div class="co-text">
+                                        <p>Neque porro quisquam est, qui dolorem ipsum dolor sit amet, consectetur,
+                                            adipisci velit dolore.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="leave-comment">
+                                <h5>Leave a comment</h5>
+                                <form action="#">
+                                    <input type="text" placeholder="Name">
+                                    <input type="text" placeholder="Email">
+                                    <input type="text" placeholder="Website">
+                                    <textarea placeholder="Comment"></textarea>
+                                    <button type="submit">Submit</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

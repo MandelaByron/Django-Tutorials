@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+    <!-- Banner Section Begin -->
+    <section class="banner-section set-bg" data-setbg="{% static 'img/breadcrumb-bg.jpg' %}">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="breadcrumb-text">
+                        <h2>Our Blog</h2>
+                        <div class="bt-option">
+                            <a href="{% url 'home'%}">Home</a>
+                            
+                            <span>Blog</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="blog-section spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 p-0">
+
+                    <!-- BLOG POSTS -->
+                    {% for blog in blog_posts %}
+                        <div class="blog-item">
+                            <div class="bi-pic">
+                                <img src="{{ blog.thumbnail.url }}" alt="{{ blog.title }}">
+                            </div>
+                            <div class="bi-text">
+                                <div class="mb-2">{{ blog.category }}</div>
+                                <h3 class="text-white"><a href="#"> {{blog.title}} </a></h3>
+                                <ul class="mt-4">
+                                    <li><a href="#" class="text-white">{{blog.author.first_name}}</a> </li>
+                                    <li> {{ blog.dateCreated|date:"F d, Y" }}</li>
+                                    <!--January 31,2024 -->
+                                </ul>
+                            </div>
+                        </div>
+
+
+                    {% endfor %}
+
+                </div>
+                <div class="col-lg-4  p-0">
+                    <div class="sidebar-option">
+                        <div class="so-categories">
+                            <h5 class="title">Categories</h5>
+
+                            <ul>
+
+                                <li><a href="#">Yoga <span>12</span></a></li>
+                                <li><a href="#">Runing <span>32</span></a></li>
+                                <li><a href="#">Weightloss <span>86</span></a></li>
+                                <li><a href="#">Cario <span>25</span></a></li>
+                                <li><a href="#">Body buiding <span>36</span></a></li>
+                                <li><a href="#">Nutrition <span>15</span></a></li>
+                            </ul>
+                        </div>
+
+                        <div class="so-tags">
+                            <h5 class="title">Popular tags</h5>
+                            <a href="#">Body buidling</a>
+                            <a href="#">Yoga</a>
+                            <a href="#">Weightloss</a>
+                            <a href="#">Proffeponal</a>
+                            <a href="#">Streching</a>
+                            <a href="#">Cardio</a>
+                            <a href="#">Karate</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     
     "home", 
     "users",
+    "blog",
     
     ##THIRD PARTY APPS
     'allauth',

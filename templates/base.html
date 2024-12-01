@@ -120,11 +120,13 @@
                                 <ul class="dropdown">
                                     <li><a href="{% url 'about' %}">About us</a></li>
                                     <li><a href="{% url 'team' %}">Our team</a></li>
+                                    <li><a href="{% url 'blog-list' %}">Our Blog</a></li>
                                     
                                 </ul>
                             </li>
                             {% if user.is_authenticated %}
                                 <li><a href="{% url 'account_logout' %}">Log Out</a></li>
+                                <li><a href="{% url 'profile' %}">Profile</a></li>
                             {% else %}
                                 <li><a href="{% url 'account_login' %}">Log In</a></li>
                             {% endif %}

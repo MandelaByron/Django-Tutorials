@@ -21,6 +21,9 @@
                         
                     </div>
                         <!-- Update Delete Buttons -->
+                        <a class="btn btn-secondary btn-sm" href="{% url 'blog-update' blog_post.slug %}">Update</a>
+                        <a class="btn btn-danger btn-sm" href="{% url 'blog-delete' blog_post.slug %}">Delete</a>
+
                     <div class="blog-details-tag-share pt-5">
                         <!-- Tags -->
 

@@ -31,7 +31,7 @@
                             </div>
                             <div class="bi-text">
                                 <div class="mb-2">{{ blog.category }}</div>
-                                <h3 class="text-white"><a href="#"> {{blog.title}} </a></h3>
+                                <h3 class="text-white"><a href="{{ blog.get_absolute_url }}"> {{blog.title}} </a></h3>
                                 <ul class="mt-4">
                                     <li><a href="#" class="text-white">{{blog.author.first_name}}</a> </li>
                                     <li> {{ blog.dateCreated|date:"F d, Y" }}</li>

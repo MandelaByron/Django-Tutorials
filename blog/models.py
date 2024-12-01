@@ -1,6 +1,7 @@
 from django.db import models
 from django.conf import settings
 from django.utils.text import slugify
+from django.urls import reverse
 import os
 import uuid
 def get_random_filename(instance, filename):
@@ -44,6 +45,8 @@ class Blog(models.Model):
     
     thumbnail = models.ImageField(default='default_thumbnail.jpg', upload_to=get_random_filename)
     
+    def get_absolute_url(self):
+        return reverse(viewname='blog-detail', kwargs={"slug": self.slug})
 
     def save(self, *args, **kwargs):
         if not self.slug:

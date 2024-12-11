@@ -2,6 +2,7 @@ from django.db import models
 from django.conf import settings
 from django.utils.text import slugify
 from django.urls import reverse
+from taggit.managers import TaggableManager
 import os
 import uuid
 def get_random_filename(instance, filename):
@@ -25,6 +26,8 @@ class Blog(models.Model):
         PUBLISHED = "PB", "PUBLISHED"
     
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="blog_posts")        
+    
+    tags = TaggableManager() #name, slug
     
     title = models.CharField(max_length=255)
     
@@ -59,7 +62,7 @@ class Blog(models.Model):
             models.Index(fields=['updated'])
         ]
         
-        ordering = ["-updated"]
+        ordering = ["-dateCreated"]
     
     def __str__(self):
         return self.title

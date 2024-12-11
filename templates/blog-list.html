@@ -33,7 +33,7 @@
                                 <div class="mb-2">{{ blog.category }}</div>
                                 <h3 class="text-white"><a href="{{ blog.get_absolute_url }}"> {{blog.title}} </a></h3>
                                 <ul class="mt-4">
-                                    <li><a href="#" class="text-white">{{blog.author.first_name}}</a> </li>
+                                    <li><a href="{% url 'user-blogs' blog.author.public_id %}" class="text-white">{{blog.author.first_name}}</a> </li>
                                     <li> {{ blog.dateCreated|date:"F d, Y" }}</li>
                                     <!--January 31,2024 -->
                                 </ul>
@@ -50,25 +50,19 @@
                             <h5 class="title">Categories</h5>
 
                             <ul>
+                                {% for category in categories %}
+                                    <li><a href="{% url 'blog-category' category.category %}">{{ category.category}}<span>{{ category.category_count }}</span></a></li>
+                                {% endfor %}
 
-                                <li><a href="#">Yoga <span>12</span></a></li>
-                                <li><a href="#">Runing <span>32</span></a></li>
-                                <li><a href="#">Weightloss <span>86</span></a></li>
-                                <li><a href="#">Cario <span>25</span></a></li>
-                                <li><a href="#">Body buiding <span>36</span></a></li>
-                                <li><a href="#">Nutrition <span>15</span></a></li>
                             </ul>
                         </div>
 
                         <div class="so-tags">
                             <h5 class="title">Popular tags</h5>
-                            <a href="#">Body buidling</a>
-                            <a href="#">Yoga</a>
-                            <a href="#">Weightloss</a>
-                            <a href="#">Proffeponal</a>
-                            <a href="#">Streching</a>
-                            <a href="#">Cardio</a>
-                            <a href="#">Karate</a>
+                            {% for tag in tags %}
+                                <a href="#"> {{ tag.tags__name }}</a>
+                            {% endfor %}
+
                         </div>
                     </div>
                 </div>

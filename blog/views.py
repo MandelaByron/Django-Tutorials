@@ -1,10 +1,39 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from .models import Blog
-from django.db.models import F
+from django.db.models import F, Count, Sum
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib import messages
+from users.models import Users
+
+class UserBlogListView(ListView):
+    #model = Blog #Blog.objects.all() -> queryset
+    def get_queryset(self):
+        public_id = self.kwargs.get("public_id")
+        
+        user = get_object_or_404(Users, public_id=public_id)
+        
+        return Blog.objects.filter(author=user)
+      
+    template_name = "blog-list.html"
+    
+    context_object_name = "blog_posts"
+
+    
+    def get_context_data(self, **kwargs):
+        context =  super().get_context_data(**kwargs)
+        
+        user = get_object_or_404(Users, public_id=self.kwargs.get("public_id"))
+        
+        context['title']= f"{user.first_name}-Blog Posts"
+        #categories and tags
+        context['categories'] = Blog.objects.values('category').annotate(category_count=Count('category'))
+        
+        context['tags'] = Blog.objects.values("tags__name").annotate(total_views=Sum("viewCount")).order_by("-total_views")
+        
+        return context
+
 class BlogListView(ListView):
     #model = Blog #Blog.objects.all() -> queryset
     queryset = Blog.published.all()
@@ -21,6 +50,32 @@ class BlogListView(ListView):
         
         context['title']= "Blog Posts"
         #categories and tags
+        context['categories'] = Blog.objects.values('category').annotate(category_count=Count('category'))
+        
+        context['tags'] = Blog.objects.values("tags__name").annotate(total_views=Sum("viewCount")).order_by("-total_views")[:8]
+        
+        return context
+class BlogCategoryListView(ListView):
+      
+    def get_queryset(self):
+        
+        category = self.kwargs.get("category")
+        return Blog.published.all().filter(category=category)
+    
+    template_name = "blog-list.html"
+    
+    context_object_name = "blog_posts"
+
+    
+    def get_context_data(self, **kwargs):
+        context =  super().get_context_data(**kwargs)
+        
+        context['title']= "Blog Posts"
+        #categories and tags
+        context['categories'] = Blog.objects.values('category').annotate(category_count=Count('category'))
+        
+        context['tags'] = Blog.objects.values("tags__name").annotate(total_views=Sum("viewCount")).order_by("-total_views")
+        
         return context
     
     
@@ -60,7 +115,7 @@ class BlogDetailView(DetailView):
 class BlogCreateView(LoginRequiredMixin,UserPassesTestMixin,CreateView):
     model = Blog
     
-    fields = ['title', 'category', "content", "thumbnail", "status"]
+    fields = ['title', 'category', "content","tags","thumbnail", "status"]
     
     template_name = 'blog-create.html'
     def get_context_data(self, **kwargs):

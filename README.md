@@ -30,5 +30,5 @@ Follow along with the series to continue building a full-featured web app.
 
 ---
 
-Watch the full tutorial on my: [[YouTube Channel](https://www.youtube.com/@byroncodes)]
+Watch the full tutorial on my [YouTube Channel](https://www.youtube.com/@byroncodes)
 

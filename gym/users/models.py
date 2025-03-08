@@ -4,6 +4,9 @@ import uuid
 from .managers import UserManager
 import os
 from PIL import Image
+
+#Instance - More specifically, this is the particular instance where the current file is being attached.
+#Filename -  filename that was originally given to the file
 def get_random_filename(instance, filename):
     # Extract the file extension from the original filename
     ext = filename.split('.')[-1]
@@ -23,7 +26,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     
     avatar = models.ImageField(default='default.jpg', upload_to=get_random_filename)
     
-    age = models.IntegerField(null=False, blank=False)
+    age = models.IntegerField(null=False, blank=False) #PositiveIntegerField
 
     email = models.EmailField(db_index=True, unique=True)
     

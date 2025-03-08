@@ -54,6 +54,18 @@ class BlogListView(ListView):
              
         context['title'] = 'Blog'
         
+        #Count - Returns the number of objects that are related through the provided expression. Count('*') is equivalent to the SQL COUNT(*) expression.
+        #Aggregates the number of occurrences of a given field or expression.
+        #returns the number of rows for each category in the queryset.
+        
+        #Sum - Computes the sum of all values of the given expression. -> Aggregates the sum of the values for a given field or expression.
+        #Aggregates the sum of the values for the viewCount field
+        #If the field being aggregated is numeric (e.g., an integer or float), it calculates the total sum of all the values in that field.
+
+        
+        #Annotate - Annotates each object in the QuerySet with the provided list of query expressions.
+        #An expression may be a simple value, a reference to a field on the model (or any related models), 
+        #or an aggregate expression (averages, sums, etc.) that has been computed over the objects that are related to the objects in the QuerySet.
         context['categories'] = Blog.objects.values('category').annotate(category_count=Count('category')).order_by()
         
         context['popular_tags'] = Blog.objects.values('tags__name').annotate(total_views=Sum('view_count')).order_by('-total_views')[:10]
@@ -108,6 +120,14 @@ class BlogCreateView(LoginRequiredMixin,UserPassesTestMixin, CreateView):
     model = Blog
     
     form_class = BlogCreateForm
+    
+    # fields = ['title', 'category', 'content', 'thumbnail', 'status', 'tags']
+    
+    # # Customizing widgets (like TinyMCE) using `get_form()` method
+    # def get_form(self, *args, **kwargs):
+    #     form = super().get_form(*args, **kwargs)
+    #     form.fields['content'].widget = TinyMCE(attrs={'cols': 80, 'rows': 30})
+    #     return form
     
     template_name = 'blog-create.html'
     

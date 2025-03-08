@@ -42,7 +42,7 @@ ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'  # Options: "none", "optional", "mandatory"
 ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_USER_MODEL_USERNAME_FIELD = None  # Disable username field
-ACCOUNT_CHANGE_EMAIL = True
+ACCOUNT_CHANGE_EMAIL = True #1 email address
 ACCOUNT_EMAIL_VERIFICATION_BY_CODE_ENABLED = True
 ACCOUNT_EMAIL_SUBJECT_PREFIX = ''
 # Add this line to override the default account adapter
@@ -208,7 +208,7 @@ EMAIL_PORT=587
 EMAIL_USE_TLS=True
 EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
-DEFAULT_FROM_EMAIL='Byron Codes <byron@ms.byroncodes.com>'
+DEFAULT_FROM_EMAIL='GYM LIFE <byron@send.byroncodes.com>'
 
 PAYSTACK_PUBLIC_KEY = os.environ.get('PAYSTACK_PUBLIC_KEY')
 
